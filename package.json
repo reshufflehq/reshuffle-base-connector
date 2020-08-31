@@ -9,13 +9,17 @@
     "build:watch": "rimraf dist && tsc -w",
     "lint": "eslint . --ext .ts,.js --fix",
     "prepublishOnly": "rimraf dist && tsc",
-    "prepare": "rimraf dist && tsc",
-    "test": "echo 'TBD'"
+    "prepare": "rimraf dist && tsc"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/reshufflehq/reshuffle-base-connector.git"
   },
+  "keywords": [
+    "Reshuffle",
+    "integrations",
+    "workflows"
+  ],
   "author": "Amir Shevat, Christophe Gachiniard",
   "license": "MIT",
   "bugs": {
