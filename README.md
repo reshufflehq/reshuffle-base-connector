@@ -2,13 +2,13 @@
 Base class for Reshuffle Connectors
 
 ## Get started
-To implement a new connector, create a new class extending the Connector claass from this package
+To implement a new connector, create a new class extending the Connector class from this package.
 
 Example:
 ```js
 import { Connector } from 'reshuffle-base-connector'
 
-class myCustomConnector extends Connector {
+class MyCustomConnector extends Connector {
     
   constructor(id /* your custom options */) {
     super(id)
@@ -16,15 +16,15 @@ class myCustomConnector extends Connector {
   }
     
   start(app) {
-    // implements your start function here
+    // implement your start function here
   }
     
   stop() {
-    // implements your stop function here
+    // implement your stop function here
   }
     
   async handle() {
-    // implements your handle function here
+    // implement your handle function here
   }
 }
 ```
