@@ -14,6 +14,10 @@ class Connector<OptionsType = any> {
     this.options = options
   }
 
+  update(options: OptionsType) {
+    this.options = options
+  }
+
   start(app: any) {
     throw new Error('start function needs to be implemented in your connector implementation')
   }
