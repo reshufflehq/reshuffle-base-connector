@@ -1,15 +1,17 @@
 import { nanoid } from 'nanoid'
 
-class Connector {
+class Connector<OptionsType = any> {
   id: string
   app?: any
   eventConfigurations: { [eventId: string]: any }
   started: boolean
+  options?: OptionsType
 
-  constructor(id?: string) {
+  constructor(options?: OptionsType, id?: string) {
     this.id = id || nanoid()
     this.eventConfigurations = {}
     this.started = false
+    this.options = options
   }
 
   start(app: any) {
