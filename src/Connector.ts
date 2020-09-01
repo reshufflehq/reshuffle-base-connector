@@ -25,12 +25,6 @@ class Connector<OptionsType = any> {
   stop() {
     throw new Error('stop function needs to be implemented in your connector implementation')
   }
-
-  async handle(...args: any[]) {
-    throw new Error('handle function needs to be implemented in your connector implementation')
-
-    return false
-  }
 }
 
 export default Connector
