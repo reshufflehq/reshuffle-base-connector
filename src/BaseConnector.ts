@@ -17,12 +17,8 @@ class BaseConnector<OptionsType = any> {
   }
 
   updateOptions(options: OptionsType) {
-    this.options = options
-    this.onUpdateOptions(options)
-  }
-
-  onUpdateOptions(options: OptionsType) {
     // Override this method if you need to do something specific on update options
+    this.options = options
   }
 
   removeEvent(event: EventConfiguration) {
