@@ -14,16 +14,43 @@ class BaseConnector<OptionsType = any> {
     this.options = options
   }
 
-  update(options: OptionsType) {
+  updateOptions(options: OptionsType) {
     this.options = options
+    this.onUpdateOptions(options)
+  }
+
+  onUpdateOptions(options: OptionsType) {
+    // Override this method if you need to do something specific on update options
+  }
+
+  removeEvent(event: any) {
+    delete this.eventConfigurations[event.id]
+    this.onRemoveEvent(event)
+  }
+
+  onRemoveEvent(event: any) {
+    // Override this method if you need to do something specific on remove events
   }
 
   start(app: any) {
-    throw new Error('start function needs to be implemented in your connector implementation')
+    this.app = app
+    if (!this.started) {
+      this.onStart()
+    }
+    this.started = true
+  }
+
+  onStart() {
+    // Override this method if you need to do something specific on start
   }
 
   stop() {
-    throw new Error('stop function needs to be implemented in your connector implementation')
+    this.started = false
+    this.onStop()
+  }
+
+  onStop() {
+    // Override this method if you need to do something specific on stop
   }
 }
 
