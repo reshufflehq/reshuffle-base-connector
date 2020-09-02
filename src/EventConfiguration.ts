@@ -1,4 +1,5 @@
 import BaseConnector from './BaseConnector'
+import { Handler } from './types'
 
 class EventConfiguration {
   id: string
@@ -11,7 +12,7 @@ class EventConfiguration {
     this.options = options
   }
 
-  do(handler: any) {
+  do(handler: () => void | Handler) {
     this.connector.app?.when(this, handler)
   }
 }
