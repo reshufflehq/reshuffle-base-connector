@@ -1,11 +1,11 @@
-import Connector from './Connector'
+import BaseConnector from './BaseConnector'
 
 class EventConfiguration {
   id: string
-  connector: Connector
+  connector: BaseConnector
   options: Record<string, any>
 
-  constructor(id: string, connector: Connector, options: Record<string, any>) {
+  constructor(id: string, connector: BaseConnector, options: Record<string, any>) {
     this.id = id
     this.connector = connector
     this.options = options
