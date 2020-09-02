@@ -1,4 +1,5 @@
-import Connector from './Connector'
+import BaseConnector from './BaseConnector'
+import BaseHttpConnector from './BaseHttpConnector'
 import EventConfiguration from './EventConfiguration'
 
-export { Connector, EventConfiguration }
+export { BaseConnector, BaseHttpConnector, EventConfiguration }

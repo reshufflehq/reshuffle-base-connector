@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid'
 
-class Connector<OptionsType = any> {
+class BaseConnector<OptionsType = any> {
   id: string
   app?: any
   eventConfigurations: { [eventId: string]: any }
@@ -27,4 +27,4 @@ class Connector<OptionsType = any> {
   }
 }
 
-export default Connector
+export default BaseConnector
