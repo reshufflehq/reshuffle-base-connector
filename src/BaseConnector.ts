@@ -40,7 +40,7 @@ class BaseConnector<OptionsType = any> {
     this.started = true
   }
 
-  onStart() {
+  onStart(app: any) {
     // Override this method if you need to do something specific on start
   }
 
