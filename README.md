@@ -10,21 +10,17 @@ import { BaseConnector } from 'reshuffle-base-connector'
 
 class MyCustomConnector extends BaseConnector {
     
-  constructor(id /* your custom options */) {
+  constructor(options, id /* your custom options */) {
     super(id)
     // Set your custom options here
   }
     
-  start(app) {
-    // implement your start function here
+  onStart(app) {
+    // ...
   }
     
-  stop() {
-    // implement your stop function here
-  }
-    
-  async handle() {
-    // implement your handle function here
+  onStop() {
+    // ...
   }
 }
 ```
