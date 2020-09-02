@@ -35,7 +35,7 @@ class BaseConnector<OptionsType = any> {
   start(app: any) {
     this.app = app
     if (!this.started) {
-      this.onStart()
+      this.onStart(app)
     }
     this.started = true
   }
