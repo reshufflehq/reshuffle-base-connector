@@ -5,7 +5,7 @@ import EventConfiguration from './EventConfiguration'
 export type Updater = (value: any) => Promise<any>
 
 export type Handler = {
-  handle: (event?: any) => void
+  handle: (event?: EventConfiguration) => void
   id: string
 }
 
@@ -15,24 +15,19 @@ export type PersistentStore = {
   list: () => Promise<string[]>
   set: (key: string, value: any) => Promise<any>
   update: (key: string, updater: Updater) => Promise<any[]>
+  validateKey: (key: string) => void
+  validateValue: (value: any) => void
 }
 
-export type Reshuffle = {
-  register: (connector: BaseConnector) => BaseConnector
-  unregister: (connector: BaseConnector) => Promise<void>
-
+export interface Reshuffle {
   getConnector: (connectorId: BaseConnector['id']) => BaseConnector
   when: (eventConfiguration: EventConfiguration, handler: () => void | Handler) => void
 
   registerHTTPDelegate: (path: string, delegate: BaseHttpConnector) => BaseHttpConnector
   unregisterHTTPDelegate: (path: string) => void
 
-  start: (port?: number, callback?: () => void) => void
-  restart: (port?: number) => void
-
   handleEvent: (eventName: string, event: any) => Promise<boolean>
 
-  setPersistentStore: (adapter: PersistentStore) => PersistentStore
   getPersistentStore: () => PersistentStore
 
   clearInterval: (intervalID: NodeJS.Timer) => void
