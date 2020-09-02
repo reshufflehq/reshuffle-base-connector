@@ -1,9 +1,11 @@
 import { nanoid } from 'nanoid'
+import { Reshuffle } from './types'
+import { EventConfiguration } from './'
 
 class BaseConnector<OptionsType = any> {
   id: string
-  app?: any
-  eventConfigurations: { [eventId: string]: any }
+  app?: Reshuffle
+  eventConfigurations: { [eventId: string]: EventConfiguration }
   started: boolean
   options?: OptionsType
 
@@ -23,16 +25,16 @@ class BaseConnector<OptionsType = any> {
     // Override this method if you need to do something specific on update options
   }
 
-  removeEvent(event: any) {
+  removeEvent(event: EventConfiguration) {
     delete this.eventConfigurations[event.id]
     this.onRemoveEvent(event)
   }
 
-  onRemoveEvent(event: any) {
+  onRemoveEvent(event: EventConfiguration) {
     // Override this method if you need to do something specific on remove events
   }
 
-  start(app: any) {
+  start(app: Reshuffle) {
     this.app = app
     if (!this.started) {
       this.onStart(app)
@@ -40,7 +42,7 @@ class BaseConnector<OptionsType = any> {
     this.started = true
   }
 
-  onStart(app: any) {
+  onStart(app: Reshuffle) {
     // Override this method if you need to do something specific on start
   }
 
