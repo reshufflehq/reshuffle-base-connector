@@ -1,7 +1,7 @@
 import BaseConnector from './BaseConnector'
 import BaseHttpConnector from './BaseHttpConnector'
 import EventConfiguration from './EventConfiguration'
-import { LoggerOptions } from 'winston'
+import { Logger } from 'winston'
 
 export type Updater = (value: any) => Promise<any>
 
@@ -34,5 +34,5 @@ export interface Reshuffle {
   clearInterval: (intervalID: NodeJS.Timer) => void
   setInterval: (callback: (...args: any[]) => void, ms: number, ...args: any[]) => NodeJS.Timer
 
-  getLogger: () => LoggerOptions
+  getLogger: () => Logger
 }
