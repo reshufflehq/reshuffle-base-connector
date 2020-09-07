@@ -2,23 +2,23 @@ import { nanoid } from 'nanoid'
 import { Reshuffle } from './types'
 import { EventConfiguration } from './'
 
-class BaseConnector<OptionsType = any> {
+class BaseConnector<ConfigOptionsType = any, EventOptionsType = any> {
   id: string
   app?: Reshuffle
   eventConfigurations: { [eventId: string]: EventConfiguration }
   started: boolean
-  options?: OptionsType
+  configOptions?: ConfigOptionsType
 
-  constructor(options?: OptionsType, id?: string) {
+  constructor(configOptions?: ConfigOptionsType, id?: string) {
     this.id = id || nanoid()
     this.eventConfigurations = {}
     this.started = false
-    this.options = options
+    this.configOptions = configOptions
   }
 
-  updateOptions(options: OptionsType) {
-    // Override this method if you need to do something specific on update options
-    this.options = options
+  updateOptions(configOptions: ConfigOptionsType) {
+    // Override this method if you need to do something specific on update configOptions
+    this.configOptions = configOptions
   }
 
   removeEvent(event: EventConfiguration) {
@@ -40,6 +40,10 @@ class BaseConnector<OptionsType = any> {
 
   onStart(app: Reshuffle) {
     // Override this method if you need to do something specific on start
+  }
+
+  on(options: EventOptionsType, eventId: EventConfiguration['id']) {
+    throw new Error('on method must be implemented')
   }
 
   stop() {

@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express'
 import { BaseConnector } from './'
 
-class BaseHttpConnector<OptionsType = any> extends BaseConnector {
-  constructor(options?: OptionsType, id?: string) {
+class BaseHttpConnector<ConfigOptionsType = any, EventOptionsType = any> extends BaseConnector {
+  constructor(options?: ConfigOptionsType, id?: string) {
     super(options, id)
   }
 
