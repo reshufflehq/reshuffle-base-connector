@@ -42,7 +42,7 @@ class BaseConnector<ConfigOptionsType = any, EventOptionsType = any> {
     // Override this method if you need to do something specific on start
   }
 
-  on(options: EventOptionsType, eventId: EventConfiguration['id']) {
+  on(options: EventOptionsType, eventId: EventConfiguration['id']): EventConfiguration {
     throw new Error('on method must be implemented')
   }
 
