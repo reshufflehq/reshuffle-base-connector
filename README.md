@@ -8,7 +8,7 @@ Example:
 ```js
 import { BaseConnector } from 'reshuffle-base-connector'
 
-class MyCustomConnector extends BaseConnector {
+class MyCustomConnector extends BaseConnector<MyConnectorConfigOptions, MyConnectorEventOptions> {
     
   constructor(options, id /* your custom options */) {
     super(id)
@@ -22,5 +22,10 @@ class MyCustomConnector extends BaseConnector {
   onStop() {
     // ...
   }
+ 
+  on(options: EventOptionsType, eventId: EventConfiguration['id']): EventConfiguration {
+    // ...
+  }
+
 }
 ```
