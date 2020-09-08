@@ -42,8 +42,9 @@ class BaseConnector<ConfigOptionsType = any, EventOptionsType = any> {
     // Override this method if you need to do something specific on start
   }
 
-  on(options: EventOptionsType, eventId: EventConfiguration['id']): EventConfiguration {
-    throw new Error('on method must be implemented')
+  on(options: EventOptionsType, eventId: EventConfiguration['id']): EventConfiguration | null {
+    console.log('The on method is not implemented for this connector')
+    return null
   }
 
   stop() {
