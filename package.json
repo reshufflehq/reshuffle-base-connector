@@ -20,7 +20,7 @@
     "integrations",
     "workflows"
   ],
-  "author": "Amir Shevat, Christophe Gachiniard",
+  "author": "Amir Shevat, Christophe Gachiniard, Nimo Naamani",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/reshufflehq/reshuffle-base-connector/issues"
