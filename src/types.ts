@@ -22,9 +22,9 @@ export type PersistentStore = {
 
 export interface Reshuffle {
   getConnector: (connectorId: BaseConnector['id']) => BaseConnector
-  when: (eventConfiguration: EventConfiguration, handler: () => void | Handler) => void
+  when: (eventConfiguration: EventConfiguration, handler: () => void | Handler) => Reshuffle
 
-  registerHTTPDelegate: (path: string, delegate: BaseHttpConnector) => BaseHttpConnector
+  registerHTTPDelegate: (path: string, delegate: BaseHttpConnector) => Reshuffle
   unregisterHTTPDelegate: (path: string) => void
 
   handleEvent: (eventName: string, event: any) => Promise<boolean>
