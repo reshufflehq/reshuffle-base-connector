@@ -1,6 +1,6 @@
 {
   "name": "reshuffle-base-connector",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "This package contains utilities for implementing new Reshuffle connectors",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
