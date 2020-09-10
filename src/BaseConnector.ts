@@ -4,7 +4,7 @@ import { EventConfiguration } from './'
 
 class BaseConnector<ConfigOptionsType = any, EventOptionsType = any> {
   id: string
-  app?: Reshuffle
+  app: Reshuffle
   eventConfigurations: { [eventId: string]: EventConfiguration }
   started: boolean
   configOptions?: ConfigOptionsType
@@ -32,15 +32,14 @@ class BaseConnector<ConfigOptionsType = any, EventOptionsType = any> {
     // Override this method if you need to do something specific on remove events
   }
 
-  start(app: Reshuffle) {
-    this.app = app
+  start() {
     if (!this.started) {
-      this.onStart(app)
+      this.onStart()
     }
     this.started = true
   }
 
-  onStart(app: Reshuffle) {
+  onStart() {
     // Override this method if you need to do something specific on start
   }
 
