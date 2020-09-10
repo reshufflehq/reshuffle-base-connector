@@ -9,11 +9,13 @@ class BaseConnector<ConfigOptionsType = any, EventOptionsType = any> {
   started: boolean
   configOptions?: ConfigOptionsType
 
-  constructor(configOptions?: ConfigOptionsType, id?: string) {
+  constructor(app: Reshuffle, configOptions?: ConfigOptionsType, id?: string) {
+    this.app = app
     this.id = id || nanoid()
     this.eventConfigurations = {}
     this.started = false
     this.configOptions = configOptions
+    app.register(this)
   }
 
   updateOptions(configOptions: ConfigOptionsType) {
@@ -42,7 +44,11 @@ class BaseConnector<ConfigOptionsType = any, EventOptionsType = any> {
     // Override this method if you need to do something specific on start
   }
 
-  on(options: EventOptionsType, eventId: EventConfiguration['id']): EventConfiguration | null {
+  on(
+    options: EventOptionsType,
+    handler?: any,
+    eventId?: EventConfiguration['id'],
+  ): EventConfiguration | null {
     console.log('The on method is not implemented for this connector')
     return null
   }
