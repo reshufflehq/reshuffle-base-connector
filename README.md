@@ -15,7 +15,7 @@ class MyCustomConnector extends BaseConnector<MyConnectorConfigOptions, MyConnec
     // Set your custom options here
   }
     
-  onStart(app) {
+  onStart() {
     // ...
   }
     
