@@ -31,8 +31,5 @@ export interface Reshuffle {
 
   getPersistentStore: () => PersistentStore
 
-  clearInterval: (intervalID: NodeJS.Timer) => void
-  setInterval: (callback: (...args: any[]) => void, ms: number, ...args: any[]) => NodeJS.Timer
-
   getLogger: () => Logger
 }
