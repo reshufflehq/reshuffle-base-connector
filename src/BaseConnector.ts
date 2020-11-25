@@ -61,13 +61,13 @@ class BaseConnector<ConfigOptionsType = any, EventOptionsType = any> {
     // Override this method if you need to do something specific on stop
   }
 
-  validateURL(url?: string): string {
+  validateURL(url?: string, errorMessage?: string): string {
     if (typeof url !== 'string') {
-      throw new Error(`Invalid url: ${url}`)
+      throw new Error(errorMessage || `Invalid url: ${url}`)
     }
     const match = url.match(/^(https:\/\/[\w-]+(\.[\w-]+)*(:\d{1,5})?)\/?$/)
     if (!match) {
-      throw new Error(`Invalid url: ${url}`)
+      throw new Error(errorMessage || `Invalid url: ${url}`)
     }
     return match[1]
   }
