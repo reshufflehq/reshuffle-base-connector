@@ -12,7 +12,7 @@ class EventConfiguration {
     this.options = options
   }
 
-  do(handler: () => void | Handler) {
+  do(handler: Handler): void {
     this.connector.app?.when(this, handler)
   }
 }

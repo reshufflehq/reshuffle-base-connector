@@ -5,10 +5,17 @@ import { Logger } from 'winston'
 
 export type Updater = (value: any) => Promise<any>
 
-export type Handler = {
-  handle: (event?: EventConfiguration) => void
+export interface Handler {
+  handle: (event: ReshuffleEvent, app: ReshuffleBase) => Promise<boolean>
   id: string
 }
+
+export type ReshuffleRequest<T> = T & { originalPath: string }
+export type ReshuffleResponse<T> = T
+export type ReshuffleEvent<RQ = Record<string, any>, RS = Record<string, any>> = {
+  req: ReshuffleRequest<RQ>
+  res: ReshuffleResponse<RS>
+} & EventConfiguration
 
 export type PersistentStore = {
   del: (key: string) => Promise<void>
@@ -20,14 +27,14 @@ export type PersistentStore = {
   validateValue: (value: any) => void
 }
 
-export interface Reshuffle {
+export interface ReshuffleBase {
   getConnector: (connectorId: BaseConnector['id']) => BaseConnector
-  when: (eventConfiguration: EventConfiguration, handler: (() => void) | Handler) => Reshuffle
-  register: (connector: BaseConnector) => Reshuffle
-  registerHTTPDelegate: (path: string, delegate: BaseHttpConnector) => Reshuffle
+  when: (eventConfiguration: EventConfiguration, handler: Handler) => ReshuffleBase
+  register: (connector: BaseConnector) => ReshuffleBase
+  registerHTTPDelegate: (path: string, delegate: BaseHttpConnector) => ReshuffleBase
   unregisterHTTPDelegate: (path: string) => void
 
-  handleEvent: (eventName: string, event: any) => Promise<boolean>
+  handleEvent: (eventName: string, event: ReshuffleEvent) => Promise<boolean>
 
   getPersistentStore: () => PersistentStore
 

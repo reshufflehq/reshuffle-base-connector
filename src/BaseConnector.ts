@@ -1,15 +1,17 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { nanoid } from 'nanoid'
-import { Reshuffle } from './types'
+import { ReshuffleBase } from './types'
 import { EventConfiguration } from './'
+import { Handler } from './types'
 
 class BaseConnector<ConfigOptionsType = any, EventOptionsType = any> {
   id: string
-  app: Reshuffle
+  app: ReshuffleBase
   eventConfigurations: { [eventId: string]: EventConfiguration }
   started: boolean
   configOptions?: ConfigOptionsType
 
-  constructor(app: Reshuffle, configOptions?: ConfigOptionsType, id?: string) {
+  constructor(app: ReshuffleBase, configOptions?: ConfigOptionsType, id?: string) {
     this.app = app
     this.id = id || nanoid()
     this.eventConfigurations = {}
@@ -18,46 +20,46 @@ class BaseConnector<ConfigOptionsType = any, EventOptionsType = any> {
     app.register(this)
   }
 
-  updateOptions(configOptions: ConfigOptionsType) {
+  updateOptions(configOptions: ConfigOptionsType): void {
     // Override this method if you need to do something specific on update configOptions
     this.configOptions = configOptions
   }
 
-  removeEvent(event: EventConfiguration) {
+  removeEvent(event: EventConfiguration): void {
     delete this.eventConfigurations[event.id]
     this.onRemoveEvent(event)
   }
 
-  onRemoveEvent(event: EventConfiguration) {
+  onRemoveEvent(event: EventConfiguration): void {
     // Override this method if you need to do something specific on remove events
   }
 
-  start() {
+  start(): void {
     if (!this.started) {
       this.onStart()
     }
     this.started = true
   }
 
-  onStart() {
+  onStart(): void {
     // Override this method if you need to do something specific on start
   }
 
   on(
     options: EventOptionsType,
-    handler?: any,
+    handler?: Handler,
     eventId?: EventConfiguration['id'],
   ): EventConfiguration | null {
     console.log('The on method is not implemented for this connector')
     return null
   }
 
-  stop() {
+  stop(): void {
     this.started = false
     this.onStop()
   }
 
-  onStop() {
+  onStop(): void {
     // Override this method if you need to do something specific on stop
   }
 
