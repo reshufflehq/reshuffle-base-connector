@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { nanoid } from 'nanoid'
 import { ReshuffleBase } from './types'
-import { EventConfiguration } from './'
+import { EventConfiguration, HandlerWrapper } from './'
 import { Handler } from './types'
 
-class BaseConnector<ConfigOptionsType = any, EventOptionsType = any> {
+class BaseConnector<ConfigOptionsType = Record<string, any> | null, EventOptionsType = Record<string, any> | null> {
   id: string
   app: ReshuffleBase
   eventConfigurations: { [eventId: string]: EventConfiguration }
@@ -47,19 +47,19 @@ class BaseConnector<ConfigOptionsType = any, EventOptionsType = any> {
 
   on(
     options: EventOptionsType,
-    handler?: Handler,
+    handler?: Handler | HandlerWrapper,
     eventId?: EventConfiguration['id'],
   ): EventConfiguration | null {
     console.log('The on method is not implemented for this connector')
     return null
   }
 
-  stop(): void {
+  stop(): Promise<void> | void {
     this.started = false
     this.onStop()
   }
 
-  onStop(): void {
+  onStop(): Promise<void> | void {
     // Override this method if you need to do something specific on stop
   }
 
