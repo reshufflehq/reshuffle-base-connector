@@ -5,7 +5,7 @@ import { Logger } from 'winston'
 
 export type Updater = (value: any) => Promise<any>
 
-export type Handler<T = Record<string, any>> = (event: ReshuffleEvent<T>, app: ReshuffleBase) => void
+export type Handler<T = Record<string, any>> = (event: ReshuffleEvent<T>, app: ReshuffleBase) => (Promise<void> | void)
 
 export interface HandlerWrapper<T = Record<string, any>> {
   handle: Handler<T>
