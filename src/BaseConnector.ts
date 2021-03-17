@@ -1,13 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { nanoid } from 'nanoid'
 import { ReshuffleBase } from './types'
-import { EventConfiguration } from './'
+import { EventConfiguration, HandlerWrapper } from './'
 import { Handler } from './types'
 
-class BaseConnector<
-  ConfigOptionsType = Record<string, any> | null,
-  EventOptionsType = Record<string, any> | null
-> {
+class BaseConnector<ConfigOptionsType = Record<string, any> | null, EventOptionsType = Record<string, any> | null> {
   id: string
   app: ReshuffleBase
   eventConfigurations: { [eventId: string]: EventConfiguration }
@@ -50,7 +47,7 @@ class BaseConnector<
 
   on(
     options: EventOptionsType,
-    handler?: Handler,
+    handler?: Handler | HandlerWrapper,
     eventId?: EventConfiguration['id'],
   ): EventConfiguration | null {
     console.log('The on method is not implemented for this connector')
