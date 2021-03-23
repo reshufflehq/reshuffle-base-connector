@@ -50,7 +50,7 @@ class BaseConnector<
 
   on(
     options: EventOptionsType,
-    handler?: Handler,
+    handler: Handler,
     eventId?: EventConfiguration['id'],
   ): EventConfiguration | null {
     console.log('The on method is not implemented for this connector')
