@@ -17,9 +17,7 @@ export interface HandlerWrapper<T = Record<string, any>> {
 
 export type ReshuffleRequest<T> = T & { originalPath: string }
 export type ReshuffleResponse<T> = T
-export type ReshuffleEvent<T = Record<string, any>> = EventConfiguration & {
-  [key: string]: any
-} & T
+export type ReshuffleEvent<T = Record<string, any>> = EventConfiguration & T
 
 export type PersistentStore = {
   del: (key: string) => Promise<void>
@@ -33,7 +31,7 @@ export type PersistentStore = {
 
 export interface ReshuffleBase {
   getConnector: (connectorId: BaseConnector['id']) => BaseConnector
-  when: (eventConfiguration: EventConfiguration, handler: Handler) => ReshuffleBase
+  when: (eventConfiguration: EventConfiguration, handler: Handler<any>) => ReshuffleBase
   register: (connector: BaseConnector) => ReshuffleBase
   registerHTTPDelegate: (path: string, delegate: BaseHttpConnector) => ReshuffleBase
   unregisterHTTPDelegate: (path: string) => void
